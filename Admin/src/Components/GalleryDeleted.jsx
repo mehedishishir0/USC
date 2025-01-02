@@ -3,12 +3,13 @@ import CommonHading from './CommonHading'
 import axios from 'axios'
 import closeicon from '../assets/close.png'
 import { toast } from 'react-toastify'
+import { url } from '../Context/context'
 
 const GalleryDeleted = () => {
   const [gallery,setGalleryImg] = useState(false)
 
   const deletedImg = async () => {
-     await axios.get('http://localhost:4000/api/ourgallery')
+     await axios.get(`${url}/api/ourgallery`)
     .then((response)=>{
       setGalleryImg(response.data.payload)
     })
@@ -18,7 +19,7 @@ const GalleryDeleted = () => {
   }
 
   const handelClick = async (id) => {
-   await axios.post('http://localhost:4000/api/ourgallery/delete',{id})
+   await axios.post(`${url}/api/ourgallery/delete`,{id})
    .then((response)=>{
     toast.success(response.data.message)
    })

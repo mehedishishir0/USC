@@ -3,13 +3,14 @@ import axios from 'axios'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import img from '../assets/imgIcon.png'
+import { url } from '../../Context/context';
 
 
 const Slide = () => {
   const [bgSlider, setBgSlider] = useState(false)
 
   const getSliderImg = async () => {
-    const bgimgs = await axios.get('http://localhost:4000/api/slider')
+    const bgimgs = await axios.get(`${url}/api/slider`)
     bgimgs.data.payload.map((img) => setBgSlider(img.img))
   }
 

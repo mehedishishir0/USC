@@ -3,6 +3,7 @@ import CommonHading from '../Components/CommonHading'
 import upload from '../assets/upload_area.png'
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import { url } from '../Context/context';
 const Slider = () => {
  const [slideImg,setSildeImg] = useState([]) 
   
@@ -15,7 +16,7 @@ const Slider = () => {
     fromData.append('slideImg', file); // Use 'slideImg[]' to send as an array
   });
   
-   await axios.post('http://localhost:4000/api/slider',fromData,{
+   await axios.post(`${url}/api/slider`,fromData,{
     headers: {
       'Content-Type': 'multipart/form-data', // Important for sending files
     },

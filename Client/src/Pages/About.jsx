@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import imgIcon from '../assets/imgIcon.png'
 import ScrollToTop from '../Helper/scroll'
+import { url } from '../../Context/context'
+
 
 const About = () => {
   ScrollToTop()
@@ -16,7 +18,7 @@ const About = () => {
 
   const getAbout = async () => {
     try {
-      const bgimgs = await axios.get('http://localhost:4000/api/about')
+      const bgimgs = await axios.get(`${url}/api/about`)
       setIsLoding(true)
       const { clgAge, clgAbout, princlpal } = bgimgs.data.payload[0]
       setAboutDetails({
@@ -34,7 +36,7 @@ const About = () => {
 
   useEffect(() => {
     getAbout()
-  }, [aboutDetails])
+  }, [aboutDetails,aboutDetails.clgAge])
  
   return (
     <>

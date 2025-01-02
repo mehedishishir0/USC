@@ -1,13 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ScrollToTop from '../Helper/scroll'
+import { url } from '../../Context/context'
 
 const SeeMore = () => {
   ScrollToTop()
   const [galleryImg, setGalleryImg] = useState(false)
   
     const getGalleryImg = async () => {
-        const response = await axios.get('http://localhost:4000/api/ourgallery')
+        const response = await axios.get(`${url}/api/ourgallery`)
         setGalleryImg(response.data.payload)
     }
     useEffect(() => {

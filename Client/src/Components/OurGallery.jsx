@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import img from '../assets/imgIcon.png'
 import { NavLink } from 'react-router-dom'
+import { url } from '../../Context/context'
 
 
 const OurGallery = () => {
   const [galleryImg, setGalleryImg] = useState(false)
   const [imgCount, setImgCount] = useState(0)
   const getGalleryImg = async () => {
-    const response = await axios.get('http://localhost:4000/api/ourgallery')
+    const response = await axios.get(`${url}/api/ourgallery`)
     setImgCount(response.data.payload.length)
     const firstEight = response.data.payload.slice(0,8)
     setGalleryImg(firstEight)

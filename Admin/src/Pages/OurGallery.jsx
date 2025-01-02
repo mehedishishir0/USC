@@ -4,6 +4,7 @@ import upload from '../assets/upload_area.png'
 import { useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { url } from '../Context/context'
 
 const OurGallery = () => {
   const [galleryImg,setGalleryImg] = useState(false)
@@ -14,7 +15,7 @@ const OurGallery = () => {
     let fromData = new FormData()
     fromData.append('gallery',galleryImg)
     
-    await axios.post('http://localhost:4000/api/ourgallery',fromData,{
+    await axios.post(`${url}/api/ourgallery`,fromData,{
        headers:{
          'Content-Type': 'multipart/form-data',
        }

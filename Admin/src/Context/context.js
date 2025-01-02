@@ -1,0 +1,1 @@
+export const url = 'https://usc-backend.onrender.com'

@@ -3,6 +3,7 @@ import CommonHading from '../Components/CommonHading'
 import upload from '../assets/upload_area.png'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import { url } from '../Context/context'
 
 const About = () => {
   const [clgAge, setClgAge] = useState('')
@@ -24,21 +25,23 @@ const About = () => {
   fromData.append('princlpalmsg',prplMsg)
   fromData.append('princlpalimg',prplImg)
   
-  await axios.post('http://localhost:4000/api/about',fromData,{
+  await axios.post(`${url}/api/about`,fromData,{
     headers:{
       'Content-Type': 'multipart/form-data',
     }
   }).then((response)=>{
     toast.success(response.data.message)
+    setClgAge('')
+    setClgDtls('')
+    setPrplImg(false)
+    setPrplName('')
+    setPrplMsg('')
   })
   .catch((err)=>{
     toast.error(err.response.data.message)
   })
 
   }
-
-
-
   return (
     <div className='w-full flex flex-col items-center'>
       <CommonHading text={'Add About Details'} />
@@ -67,11 +70,11 @@ const About = () => {
             <div className='flex flex-col gap-3'>
               <div className='flex flex-col w-full gap-3'>
                 <label htmlFor="princlpalName" className='text-center font-semibold text-gray-600 text-xl'>Princlpal Name</label>
-                <input required type="text" onChange={(e) => setPrplName(e.target.value)} id='princlpalName' className='w-full px-3 py-3 bg-transparent border-gray-400 border rounded-lg outline-none' placeholder='enter princlpale name' />
+                <input required type="text" onChange={(e) => setPrplName(e.target.value)} value={prplName} id='princlpalName' className='w-full px-3 py-3 bg-transparent border-gray-400 border rounded-lg outline-none' placeholder='enter princlpale name' />
               </div>
               <div className='flex flex-col gap-3'>
                 <p className='text-center font-semibold text-gray-600 text-xl'>Princlpale Message </p>
-                <textarea required onChange={(e) => setPrplMsg(e.target.value)} className='w-full px-3 resize-none py-3 bg-transparent border-gray-400 border rounded-lg outline-none' id="princlpaleMsg" placeholder='enter message'></textarea>
+                <textarea required onChange={(e) => setPrplMsg(e.target.value)} value={prplMsg} className='w-full px-3 resize-none py-3 bg-transparent border-gray-400 border rounded-lg outline-none' id="princlpaleMsg" placeholder='enter message'></textarea>
               </div>
             </div>
           </div>
