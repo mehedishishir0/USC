@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+div .home a:hover {
+color: orange;
+}
+
+div .home .active{
+    color: orange;
+    border-bottom: 2px solid orange;
+}
